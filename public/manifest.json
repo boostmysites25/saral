@@ -1,0 +1,60 @@
+{
+  "short_name": "SARAL",
+  "name": "SARAL - Technology Solutions & Digital Innovation",
+  "description": "Leading technology solutions company specializing in AI development, web development, app development, blockchain, data science, and more.",
+  "icons": [
+    {
+      "src": "logo.jpeg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "logo.jpeg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo.jpeg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View our technology services",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "logo.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact-us",
+      "icons": [
+        {
+          "src": "logo.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

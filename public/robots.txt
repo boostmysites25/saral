@@ -1,0 +1,21 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://saral-labs.com/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important files
+Allow: /logo.jpeg
+Allow: /manifest.json
+Allow: /favicon.ico
+
+# Crawl delay (optional)
+Crawl-delay: 1
