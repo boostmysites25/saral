@@ -28,7 +28,11 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #faf3ef;
+  background-color: #f1f1f1;
+}
+
+.reset-html-styles * {
+  all: revert;
 }
 
 @layer utilities {

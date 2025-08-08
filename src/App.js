@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { LandingPage } from "./pages/landingPages/LandingPage";
@@ -36,24 +37,37 @@ AOS.init({
   offset: 0,
 });
 
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 export default function App() {
   return (
-    <HelmetProvider>
-      <SpinnerContextProvider>
-        <LoadingSpinnerContext />
-        <Suspense fallback={<LoadingSpinner />}>
-          <WhatsAppIcon />
-          <Toaster
-            position="top-bottom"
-            toastOptions={{
-              style: {
-                background: "#010C2A",
-                color: "#ffffff",
-              },
-            }}
-          />
-          <ScrollToTop />
-          <Routes>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <SpinnerContextProvider>
+          <LoadingSpinnerContext />
+          <Suspense fallback={<LoadingSpinner />}>
+            <WhatsAppIcon />
+            <Toaster
+              position="top-bottom"
+              toastOptions={{
+                style: {
+                  background: "#010C2A",
+                  color: "#ffffff",
+                },
+              }}
+            />
+            <ScrollToTop />
+            <Routes>
           {/* Website Pages */}
           {routes.map(({ component, name, path }, index) => (
             <Route
@@ -69,7 +83,7 @@ export default function App() {
             />
           ))}
           <Route
-            path="/blogs/:id"
+            path="/blogs/:slug"
             element={
               <>
                 {" "}
@@ -158,6 +172,7 @@ export default function App() {
         </Suspense>
       </SpinnerContextProvider>
     </HelmetProvider>
+    </QueryClientProvider>
   );
 }
 

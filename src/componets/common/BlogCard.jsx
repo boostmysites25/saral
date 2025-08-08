@@ -3,21 +3,34 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
+  // Format date from API response
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <div className="h-48 overflow-hidden">
         <img
-          src={blog.image}
-          alt={blog.title}
+          src={blog.imageUrl || blog.image}
+          alt={blog.imageAlt || blog.title}
           className="w-full h-full object-cover"
         />
       </div>
       <div className="p-6">
         <div className="flex items-center mb-2">
           <span className="text-xs font-semibold px-2 py-1 rounded-full bg-tertiary text-primary">
-            {blog.category}
+            {blog.categoryId?.name || blog.category}
           </span>
-          <span className="text-xs text-secondary ml-2">{blog.date}</span>
+          <span className="text-xs text-secondary ml-2">
+            {formatDate(blog.publishDate || blog.date)}
+          </span>
         </div>
         <h3 className="text-xl font-raleway font-semibold text-primarytextcolor mb-2 line-clamp-2">
           {blog.title}
@@ -26,7 +39,7 @@ const BlogCard = ({ blog }) => {
           {blog.excerpt}
         </p>
         <Link
-          to={`/blogs/${blog.id}`}
+          to={`/blogs/${blog.slug || blog.id}`}
           className="text-primary hover:text-headertexthoverandactive font-medium text-sm flex items-center transition-colors duration-300"
         >
           Read More
